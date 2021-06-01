@@ -11,7 +11,6 @@ class Factory {
         let presenter = MainPresenter(view: controller, interactor: interactor, router: router)
         
         controller.setPresenter(presenter: presenter)
-        interactor.setPresenter(presenter: presenter)
         return controller
     }
 }

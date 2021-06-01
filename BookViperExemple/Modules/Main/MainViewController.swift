@@ -1,7 +1,7 @@
 import UIKit
 import Nuke
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     private let identifierCell = "book"
     private var presenter: MainPresenterProtocol!
     
@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
         self.presenter = presenter
     }
     
-    func configure() {
+    private func configure() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(

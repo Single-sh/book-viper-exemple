@@ -1,23 +1,24 @@
 import Foundation
+import Moya
 
 protocol MainViewProtocol: AnyObject {
-//    var presenter: MainPresenterProtocol { get set }
     func showBooks(books: [Book])
 }
 
 protocol MainPresenterProtocol: AnyObject {
-//    var router: MainRouterProtocol { get set }
-//    var view: MainViewProtocol { get set }
-//    var iteractor: MainInteractorProtocol { get set }
+    init(view: MainViewProtocol, interactor: MainInteractorProtocol, router: MainRouterProtocol)
     func searchBooks(search: String)
-    func showBooks(books: [Book])
 }
 
 protocol MainInteractorProtocol: AnyObject {
-//    var presenter: MainPresenterProtocol { get set }
-    func getBooks(search: String)
+    init(remoute: MoyaProvider<RemouteBookService>)
+    func getBooks(search: String, completion: @escaping (Result<[Book], DescriptionError>) -> ())
 }
 
 protocol MainRouterProtocol: AnyObject {
-    
+    init(view: MainViewController)
+}
+
+struct DescriptionError: Error {
+  let description: String
 }

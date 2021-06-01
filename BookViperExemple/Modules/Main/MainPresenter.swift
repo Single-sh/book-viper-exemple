@@ -1,23 +1,24 @@
 import Foundation
 
-class MainPresenter: MainPresenterProtocol {
-    unowned var view: MainViewProtocol
-    var interactor: MainInteractorProtocol
-    var router: MainRouterProtocol
+final class MainPresenter: MainPresenterProtocol {
+    private unowned var view: MainViewProtocol
+    private var interactor: MainInteractorProtocol
+    private var router: MainRouterProtocol
     
-    init(view: MainViewProtocol, interactor: MainInteractorProtocol, router: MainRouterProtocol) {
+    required init(view: MainViewProtocol, interactor: MainInteractorProtocol, router: MainRouterProtocol) {
         self.view = view
         self.interactor = interactor
         self.router = router
     }
     
     func searchBooks(search: String) {
-        interactor.getBooks(search: search)
+        interactor.getBooks(search: search) { [weak view] result in
+            switch result {
+            case let .success(books):
+                view?.showBooks(books: books)
+            case let .failure(error):
+                print(error.description)
+            }
+        }
     }
-    
-    func showBooks(books: [Book]) {
-        view.showBooks(books: books)
-    }
-    
-    
 }

@@ -1,31 +1,27 @@
 import Foundation
 import Moya
 
-class MainInteractor: MainInteractorProtocol {
+final class MainInteractor: MainInteractorProtocol {
     let remouteService: MoyaProvider<RemouteBookService>
-    private weak var presenter: MainPresenterProtocol!
     
-    init(remoute: MoyaProvider<RemouteBookService>) {
+    required init(remoute: MoyaProvider<RemouteBookService>) {
         self.remouteService = remoute
     }
     
-    func setPresenter(presenter: MainPresenterProtocol) {
-        self.presenter = presenter
-    }
-    
-    func getBooks(search: String) {
-        remouteService.request(.getList(search: search)) { [weak presenter] result in
+    func getBooks(search: String, completion: @escaping (Result<[Book], DescriptionError>) -> ()) {
+        remouteService.request(.getList(search: search)) { result in
             switch result {
             case let .success(response):
                 do {
                     let list = try response.map(ListBooks.self)
-                    presenter?.showBooks(books: list.items)
+                    completion(.success(list.items))
+                    
                 }
                 catch {
-                    print("Error parse ListBook")
+                    completion(.failure(.init(description: "Error parse ListBook")))
                 }
             case let .failure(error):
-                print(error.errorDescription)
+                completion(.failure(.init(description: error.localizedDescription)))
             }
         }
     }

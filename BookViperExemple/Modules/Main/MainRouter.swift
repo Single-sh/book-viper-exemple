@@ -1,9 +1,9 @@
 import Foundation
 
 class MainRouter: MainRouterProtocol {
-    unowned var view: MainViewController
+    private unowned var view: MainViewController
     
-    init(view: MainViewController) {
+    required init(view: MainViewController) {
         self.view = view
     }
 }
