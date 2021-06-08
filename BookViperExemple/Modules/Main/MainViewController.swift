@@ -10,7 +10,7 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.searchBooks(search: "swift")
+        presenter.searchBooks(search: "детские сказки")
         configure()
     }
     
@@ -25,6 +25,9 @@ final class MainViewController: UIViewController {
             UINib(nibName: "BookCell", bundle: nil),
             forCellReuseIdentifier: identifierCell
         )
+        
+        tableView.addSubview(UIView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 0)))
+        tableView.addSubview(UIView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 100)))
     }
 
 }
@@ -45,9 +48,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifierCell, for: indexPath)
         let book = books[indexPath.row]
         cell.textLabel?.text = book.info.title
-        if let url = URL(string: book.info.imageLinks.small), let imageView = cell.imageView {
-            Nuke.loadImage(with: url, into: imageView)
-        }
+//        if let url = URL(string: book.info.imageLinks.small), let imageView = cell.imageView {
+//            Nuke.loadImage(with: url, into: imageView)
+//        }
         return cell
     }
     

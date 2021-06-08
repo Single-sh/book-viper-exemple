@@ -12,7 +12,10 @@ final class MainPresenter: MainPresenterProtocol {
     }
     
     func searchBooks(search: String) {
-        interactor.getBooks(search: search) { [weak view] result in
+        var books = [Book]()
+        let group = DispatchGroup()
+        group.enter()
+        interactor.getBooks(search: "swift") { [weak view] result in
             switch result {
             case let .success(books):
                 view?.showBooks(books: books)

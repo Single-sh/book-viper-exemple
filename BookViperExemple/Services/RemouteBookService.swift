@@ -28,7 +28,12 @@ extension RemouteBookService: TargetType {
     var task: Task {
         switch self {
             case let .getList(search):
-              return .requestParameters(parameters: ["q": search], encoding: URLEncoding.queryString)
+                return .requestParameters(
+                    parameters: [
+                        "q": search,
+                        "maxResults": 5
+                    ],
+                    encoding: URLEncoding.queryString)
             }
     }
     
