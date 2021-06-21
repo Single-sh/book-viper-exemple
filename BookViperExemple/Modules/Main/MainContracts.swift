@@ -8,6 +8,10 @@ protocol MainViewProtocol: AnyObject {
 protocol MainPresenterProtocol: AnyObject {
     init(view: MainViewProtocol, interactor: MainInteractorProtocol, router: MainRouterProtocol)
     func searchBooks(search: String)
+    func getCellCount(at section: Int) -> Int
+    func getCellData(indexPath: IndexPath) -> Book
+    func getSectionCount() -> Int
+    func getSectionTitle(at section: Int) -> String
 }
 
 protocol MainInteractorProtocol: AnyObject {

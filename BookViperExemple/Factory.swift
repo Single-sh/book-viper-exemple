@@ -9,8 +9,9 @@ class Factory {
         let interactor = MainInteractor(remoute: remouteService)
         let router = MainRouter(view: controller)
         let presenter = MainPresenter(view: controller, interactor: interactor, router: router)
-        
         controller.setPresenter(presenter: presenter)
-        return controller
+        controller.title = "EXPLORE"
+        let navigation = BooksNavigationBar(rootViewController: controller)
+        return navigation
     }
 }
