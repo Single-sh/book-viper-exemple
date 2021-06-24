@@ -15,7 +15,7 @@ protocol MainPresenterProtocol: AnyObject {
 }
 
 protocol MainInteractorProtocol: AnyObject {
-    init(remoute: MoyaProvider<RemouteBookService>)
+    init(remoute: NetworkRequest)
     func getBooks(search: String, completion: @escaping (Result<[Book], DescriptionError>) -> ())
 }
 

@@ -16,7 +16,6 @@ final class MainPresenter: MainPresenterProtocol {
     func searchBooks(search: String) {
         let group = DispatchGroup()
         let searches = ["swift", "детские сказки", "камасутра", "готовка для чайников"]
-        
         searches.forEach { search in
             group.enter()
             interactor.getBooks(search: search) {[weak self] result in
