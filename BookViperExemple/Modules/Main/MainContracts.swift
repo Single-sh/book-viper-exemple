@@ -15,7 +15,8 @@ protocol MainPresenterProtocol: AnyObject {
 }
 
 protocol MainInteractorProtocol: AnyObject {
-    init(remoute: NetworkRequest)
+    typealias RemouteService = AnyObject
+    init(remoute: RemouteService)
     func getBooks(search: String, completion: @escaping (Result<[Book], DescriptionError>) -> ())
 }
 
