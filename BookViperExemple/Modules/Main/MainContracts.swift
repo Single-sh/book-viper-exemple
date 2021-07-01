@@ -2,7 +2,8 @@ import Foundation
 import Moya
 
 protocol MainViewProtocol: AnyObject {
-    func showBooks(books: [Book])
+    func showBooks()
+    func updateProgressBar(progress: Float)
 }
 
 protocol MainPresenterProtocol: AnyObject {
@@ -15,8 +16,7 @@ protocol MainPresenterProtocol: AnyObject {
 }
 
 protocol MainInteractorProtocol: AnyObject {
-    typealias RemouteService = AnyObject
-    init(remoute: RemouteService)
+    init(remoute: NetworkRequest)
     func getBooks(search: String, completion: @escaping (Result<[Book], DescriptionError>) -> ())
 }
 

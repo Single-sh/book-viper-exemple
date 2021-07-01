@@ -5,11 +5,11 @@ final class MainViewController: UIViewController {
     private let identifierCell = "book"
     private var presenter: MainPresenterProtocol!
     private var collection: UICollectionView!
-    
+    private let progresBar = CercleProgressBar()
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.searchBooks(search: "детские сказки")
         configure()
+        presenter.searchBooks(search: "детские сказки")
     }
     
     func setPresenter(presenter: MainPresenterProtocol) {
@@ -66,12 +66,32 @@ final class MainViewController: UIViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: String(describing: HeaderCollectionReusableView.self)
         )
+        setupProgresBar()
+    }
+    
+    private func setupProgresBar() {
+        view.addSubview(progresBar)
+        progresBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            progresBar.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            progresBar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            progresBar.heightAnchor.constraint(equalToConstant: 200),
+            progresBar.widthAnchor.constraint(equalToConstant: 200)
+        ])
+        progresBar.backgroundColor = .gray
+        
     }
 
 }
 
 extension MainViewController: MainViewProtocol {
-    func showBooks(books: [Book]) {
+    
+    func updateProgressBar(progress: Float) {
+        progresBar.progress = CGFloat(progress / 100)
+    }
+    
+    func showBooks() {
+        progresBar.isHidden = true
         collection.reloadData()
     }
 }

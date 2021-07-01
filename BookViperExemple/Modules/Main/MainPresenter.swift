@@ -1,6 +1,6 @@
 import Foundation
-
 final class MainPresenter: MainPresenterProtocol {
+    
     private unowned var view: MainViewProtocol
     private var interactor: MainInteractorProtocol
     private var router: MainRouterProtocol
@@ -28,8 +28,21 @@ final class MainPresenter: MainPresenterProtocol {
                 group.leave()
             }
         }
-        group.notify(queue: .main) { [weak view] in
-            view?.showBooks(books: [])
+        group.notify(queue: .main) { [weak self] in
+            self?.updateProgress(current: 0, max: searches.count)
+        }
+    }
+    
+    private func updateProgress(current: Int, max: Int) {
+        if current == max {
+            view.showBooks()
+            return
+        }
+        let cur = current + 1
+        let progress: Float = Float(100 / max * cur)
+        view.updateProgressBar(progress: progress)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.updateProgress(current: cur, max: max)
         }
     }
     

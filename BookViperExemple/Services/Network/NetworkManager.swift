@@ -1,117 +1,103 @@
 import Foundation
 
 protocol NetworkRequest {
-    func request<T: Codable>(link: LinkRequest, completion: @escaping (Result<T, DescriptionError>) -> ())
+    func request<T: Codable>(route: NetworkRouter, keyTask: String, completion: @escaping (Result<T, DescriptionError>) -> ())
+    func cancelTask(keyTask: String)
+}
+
+extension NetworkRequest {
+    func request<T: Codable>(route: NetworkRouter, keyTask: String = "", completion: @escaping (Result<T, DescriptionError>) -> ()) {
+        request(route: route, keyTask: keyTask, completion: completion)
+    }
 }
 
 class NetworkManager: NetworkRequest {
     private let baseUrl: String
-    private var tasks = [URLSessionTask]()
+    private var tasks = [String: URLSessionTask]()
     init (baseUrl: String) {
         self.baseUrl = baseUrl
     }
     
-    func request<T: Codable>(link: LinkRequest, completion: @escaping (Result<T, DescriptionError>) -> ()) {
-        var components = URLComponents(string: baseUrl + link.path)
-        components?.queryItems = link.query
+    func request<T: Codable>(route: NetworkRouter, keyTask: String, completion: @escaping (Result<T, DescriptionError>) -> ()) {
+        var components = URLComponents(string: baseUrl + route.path)
+        components?.queryItems = route.query
         guard let url = components?.url else {
+            completion(.failure(.init(description: "Url error")))
             return
         }
         var request = URLRequest(url: url)
-        request.httpMethod = link.method
-        request.httpBody = link.body
+        request.httpMethod = route.method
+        request.httpBody = route.body
         
-        request.allHTTPHeaderFields = link.headers.compactMapValues{$0 as? String}
+        request.allHTTPHeaderFields = route.headers.compactMapValues{$0 as? String}
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let respons = response as? HTTPURLResponse else {
-                completion(.failure(.init(description: "response is Empty")))
+            if error != nil {
+                DispatchQueue.main.async {
+                    completion(.failure(.init(description: NetworkResponse.disconect.rawValue)))
+                }
                 return
             }
-            print("Status \(respons.statusCode): \(url.absoluteString)")
-            switch respons.statusCode {
-            case 200...299:
-                DispatchQueue.main.async { [unowned self] in
-                    completion(self.decode(data: data))
-                }
-            case 400...499:
+            guard let response = response as? HTTPURLResponse else {
                 DispatchQueue.main.async {
-                    completion(.failure(.init(description: "Bad request")))
+                    completion(.failure(.init(description: NetworkResponse.failed.rawValue)))
                 }
-            case 500...599:
+                return
+            }
+            print("Status \(response.statusCode): \(url.absoluteString)")
+            let responseStatus = self.handleNetworkResponse(response)
+            switch responseStatus {
+            case .success:
                 DispatchQueue.main.async {
-                    completion(.failure(.init(description: "Server dont response")))
+                    completion(CodableService.decode(data: data))
                 }
             default:
                 DispatchQueue.main.async {
-                    completion(.failure(.init(description: "Unowned status code")))
+                    completion(.failure(.init(description: responseStatus.rawValue)))
                 }
             }
         }
-        tasks.append(task)
+        if !keyTask.isEmpty {
+            tasks[keyTask] = task
+        }
         task.resume()
     }
     
-    private func printStatusRequest(status: Int, url: URL) {
-        print("Status \(status): \(url.absoluteString)")
+    func cancelTask(keyTask: String) {
+        tasks[keyTask]?.cancel()
+        tasks[keyTask] = nil
     }
     
-    private func decode<T: Decodable>(data: Data?) -> Result<T, DescriptionError> {
-        do {
-            let result = try JSONDecoder().decode(T.self, from: data ?? Data())
-            return .success(result)
-            
-        }
-        catch {
-            print(error)
-            return .failure(.init(description: "Error decoder jsson"))
+    private func handleNetworkResponse(_ response: HTTPURLResponse) -> NetworkResponse {
+        switch response.statusCode {
+        case 200...299:
+            return .success
+        case 400...499:
+            return .authenticationError
+        case 500...599:
+            return .badRequest
+        case 600:
+            return .outdated
+        default:
+            return .failed
         }
     }
 }
 
+enum NetworkResponse: String {
+    case success
+    case authenticationError = "Need authentication"
+    case badRequest = "Bad request"
+    case outdated = "The url you requested is outdated"
+    case failed = "Network request failed"
+    case noData = "Response returned with no data to decode"
+    case unableToDecode = "We could not decode the response"
+    case disconect = "Plase check your network connection"
+}
 
-protocol LinkRequest {
+protocol NetworkRouter {
     var path: String {get}
     var headers: [String: Any] {get}
     var method: String {get}
     var body: Data? {get}
     var query: [URLQueryItem] {get}
-}
-
-enum LinkList: LinkRequest {
-    case getList(search: String)
-    
-    var path: String {
-        switch self {
-        case let .getList(search):
-            return "/volumes?q=\(search)"
-        }
-    }
-    
-    var headers: [String : Any] {
-        let headers: [String: Any] = ["Content-type": "application/json"]
-        return headers
-    }
-    
-    var query: [URLQueryItem] {
-        switch self {
-        case let .getList(search):
-            return [URLQueryItem(name: "q", value: search)]
-        }
-    }
-    
-    var method: String {
-        switch self {
-        case .getList(_):
-            return "GET"
-        }
-    }
-    
-    var body: Data? {
-        nil
-    }
-    
-}
-
-struct ErrorRequest: Error {
-    let message: String
 }
