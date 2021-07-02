@@ -61,4 +61,8 @@ final class MainPresenter: MainPresenterProtocol {
     func getSectionTitle(at section: Int) -> String {
         data[section].title
     }
+    
+    func selectCell(indexPath: IndexPath) {
+        router.openAboutBook(book: data[indexPath.section].books[indexPath.row])
+    }
 }

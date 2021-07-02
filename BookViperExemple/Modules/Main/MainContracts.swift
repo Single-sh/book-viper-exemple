@@ -13,6 +13,7 @@ protocol MainPresenterProtocol: AnyObject {
     func getCellData(indexPath: IndexPath) -> Book
     func getSectionCount() -> Int
     func getSectionTitle(at section: Int) -> String
+    func selectCell(indexPath: IndexPath)
 }
 
 protocol MainInteractorProtocol: AnyObject {
@@ -21,7 +22,8 @@ protocol MainInteractorProtocol: AnyObject {
 }
 
 protocol MainRouterProtocol: AnyObject {
-    init(view: MainViewController)
+    init(view: MainViewController, factory: Factory)
+    func openAboutBook(book: Book)
 }
 
 struct DescriptionError: Error {
