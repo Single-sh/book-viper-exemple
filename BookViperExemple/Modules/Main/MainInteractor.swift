@@ -8,7 +8,7 @@ final class MainInteractor: MainInteractorProtocol {
         self.remouteService = remoute
     }
     
-    func getBooks(search: String, completion: @escaping (Result<[Book], DescriptionError>) -> ()) {
+    func getBooks(search: String, completion: @escaping (Result<[BookProtocol], DescriptionError>) -> ()) {
         remouteService.request(route: GoogleBooksRouter.getList(search: search)) { (result: Result<ListBooks, DescriptionError>) in
             switch result {
             case let .success(response):

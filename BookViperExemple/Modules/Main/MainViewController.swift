@@ -2,10 +2,12 @@ import UIKit
 import Nuke
 
 final class MainViewController: UIViewController {
+    
     private let identifierCell = "book"
     private var presenter: MainPresenterProtocol!
     private var collection: UICollectionView!
     private let progresBar = CercleProgressBar()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -123,7 +125,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         ) as! BookCollectionViewCell
         let data = presenter.getCellData(indexPath: indexPath)
         let emptyImage = UIImage(named: "emptyImage")
-        if let urlString = data.info.imageLinks?.normal, let url = URL(string: urlString) {
+        if let urlString = data.thumbnail, let url = URL(string: urlString) {
             let options = ImageLoadingOptions(placeholder: emptyImage, failureImage: emptyImage)
             Nuke.loadImage(with: url, options: options, into: cell.imageView)
         } else {

@@ -1,11 +1,11 @@
 import Foundation
 final class MainPresenter: MainPresenterProtocol {
     
-    private unowned var view: MainViewProtocol
-    private var interactor: MainInteractorProtocol
-    private var router: MainRouterProtocol
+    private unowned let view: MainViewProtocol
+    private let interactor: MainInteractorProtocol
+    private let router: MainRouterProtocol
     
-    private var data = [(title: String, books: [Book])]()
+    private var data = [(title: String, books: [BookProtocol])]()
     
     required init(view: MainViewProtocol, interactor: MainInteractorProtocol, router: MainRouterProtocol) {
         self.view = view
@@ -50,7 +50,7 @@ final class MainPresenter: MainPresenterProtocol {
         data[section].books.count
     }
     
-    func getCellData(indexPath: IndexPath) -> Book {
+    func getCellData(indexPath: IndexPath) -> BookProtocol {
         data[indexPath.section].books[indexPath.row]
     }
     

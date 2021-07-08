@@ -1,28 +1,18 @@
 import Foundation
 
 struct ListBooks: Codable {
-    let total: Int
+    let totalItems: Int
     let items: [Book]
-    
-    enum CodingKeys: String, CodingKey {
-        case total = "totalItems"
-        case items = "items"
-    }
 }
 
 struct Book: Codable {
-    let id: String
-    let info: Info
-    
-    enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case info = "volumeInfo"
-    }
+    let id: String?
+    let volumeInfo: Info
 }
 
 struct Info: Codable {
     let title: String
-    let authors: [String?]?
+    let authors: [String]?
     let publisher: String?
     let publishedDate: String?
     let description: String?
@@ -30,11 +20,50 @@ struct Info: Codable {
 }
 
 struct ImageLinks: Codable {
-    let small: String?
-    let normal: String?
+    let smallThumbnail: String?
+    let thumbnail: String?
+}
+
+protocol BookProtocol {
+    var title: String? {get}
+    var id: String? {get}
+    var authors: [String]? {get}
+    var publisher: String? {get}
+    var publishedDate: String? {get}
+    var descriptionBook: String? {get}
+    var smallThumbnail: String? {get}
+    var thumbnail: String? {get}
+}
+
+extension Book: BookProtocol {
     
-    enum CodingKeys: String, CodingKey {
-        case small = "smallThumbnail"
-        case normal = "thumbnail"
+    var title: String? {
+        volumeInfo.title
     }
+    
+    var authors: [String]? {
+        volumeInfo.authors
+    }
+    
+    var publisher: String? {
+        volumeInfo.publisher
+    }
+    
+    var publishedDate: String? {
+        volumeInfo.publishedDate
+    }
+    
+    var descriptionBook: String? {
+        volumeInfo.description
+    }
+    
+    var smallThumbnail: String? {
+        volumeInfo.imageLinks?.smallThumbnail
+    }
+    
+    var thumbnail: String? {
+        volumeInfo.imageLinks?.thumbnail
+    }
+    
+    
 }

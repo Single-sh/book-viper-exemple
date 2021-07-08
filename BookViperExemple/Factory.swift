@@ -3,6 +3,7 @@ import Moya
 
 class Factory {
     private let networkManager = NetworkManager(baseUrl: "https://www.googleapis.com/books/v1")
+    private let repo = BookRepo()
     
     func getMainViewController() -> UIViewController {
         let controller = MainViewController(nibName: "MainViewController", bundle: nil)
@@ -15,9 +16,11 @@ class Factory {
         return navigation
     }
     
-    func getAboutViewController(book: Book) -> UIViewController {
+    func getAboutViewController(book: BookProtocol) -> UIViewController {
         let controller = AboutViewController(nibName: "AboutViewController", bundle: nil)
-        controller.book = book
+        let interactor = AboutInteractor(repo: repo)
+        let presenter = AboutPresenter(view: controller, interactor: interactor, book: book)
+        controller.setPresenter(presenter: presenter)
         return controller
     }
 }

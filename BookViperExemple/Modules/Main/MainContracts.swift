@@ -10,7 +10,7 @@ protocol MainPresenterProtocol: AnyObject {
     init(view: MainViewProtocol, interactor: MainInteractorProtocol, router: MainRouterProtocol)
     func searchBooks(search: String)
     func getCellCount(at section: Int) -> Int
-    func getCellData(indexPath: IndexPath) -> Book
+    func getCellData(indexPath: IndexPath) -> BookProtocol
     func getSectionCount() -> Int
     func getSectionTitle(at section: Int) -> String
     func selectCell(indexPath: IndexPath)
@@ -18,12 +18,12 @@ protocol MainPresenterProtocol: AnyObject {
 
 protocol MainInteractorProtocol: AnyObject {
     init(remoute: NetworkRequest)
-    func getBooks(search: String, completion: @escaping (Result<[Book], DescriptionError>) -> ())
+    func getBooks(search: String, completion: @escaping (Result<[BookProtocol], DescriptionError>) -> ())
 }
 
 protocol MainRouterProtocol: AnyObject {
     init(view: MainViewController, factory: Factory)
-    func openAboutBook(book: Book)
+    func openAboutBook(book: BookProtocol)
 }
 
 struct DescriptionError: Error {

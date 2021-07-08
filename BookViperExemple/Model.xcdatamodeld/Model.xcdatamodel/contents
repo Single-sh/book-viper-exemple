@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E241" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="BookDTO" representedClassName="BookDTO" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="String"/>
-        <relationship name="info" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InfoDTO"/>
+    <entity name="BookDTO" representedClassName=".BookDTO" syncable="YES" codeGenerationType="category">
+        <attribute name="id" attributeType="String"/>
+        <relationship name="info" maxCount="1" deletionRule="Nullify" destinationEntity="InfoDTO"/>
     </entity>
-    <entity name="ImageLinksDTO" representedClassName="ImageLinksDTO" syncable="YES" codeGenerationType="class">
+    <entity name="ImageLinksDTO" representedClassName=".ImageLinksDTO" syncable="YES" codeGenerationType="category">
         <attribute name="smallThumbnail" optional="YES" attributeType="String"/>
         <attribute name="thumbnail" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="InfoDTO" representedClassName="InfoDTO" syncable="YES" codeGenerationType="class">
-        <attribute name="authors" optional="YES" attributeType="Transformable" customClassName="Array&lt;String?&gt;"/>
+    <entity name="InfoDTO" representedClassName=".InfoDTO" syncable="YES" codeGenerationType="category">
+        <attribute name="authors" optional="YES" attributeType="Transformable" customClassName="Array&lt;String&gt;"/>
         <attribute name="descriptionBook" optional="YES" attributeType="String"/>
         <attribute name="publishedDate" optional="YES" attributeType="String"/>
         <attribute name="publisher" optional="YES" attributeType="String"/>
@@ -18,7 +18,7 @@
     </entity>
     <elements>
         <element name="BookDTO" positionX="-599.115478515625" positionY="-10.06085205078125" width="128" height="59"/>
+        <element name="ImageLinksDTO" positionX="-240.0534057617188" positionY="180.9453735351562" width="128" height="59"/>
         <element name="InfoDTO" positionX="-405.9375610351562" positionY="40.01870727539062" width="128" height="119"/>
-        <element name="ImageLinksDTO" positionX="-240.0534057617188" positionY="180.9453735351562" width="128" height="73"/>
     </elements>
 </model>
