@@ -22,14 +22,10 @@ class AboutPresenter: AboutPresenterProtocol {
     func favouriteButtonTap() {
         switch actionButton {
         case .save:
-            save()
+            actionButton = interactor.save(book: book) ? .remove : .save
         case .remove:
-            return
+            actionButton = interactor.remove(id: book.id!) ? .save : .remove
         }
-    }
-    
-    private func save() {
-        actionButton = interactor.save(book: book) ? .remove : .save
         view.setupFavourite(action: actionButton)
     }
 }

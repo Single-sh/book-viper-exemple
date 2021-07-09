@@ -10,6 +10,7 @@ class MainRouter: MainRouterProtocol {
     }
     
     func openAboutBook(book: BookProtocol) {
-        view.present(factory.getAboutViewController(book: book), animated: true)
+        let aboutController = factory.getAboutViewController(book: book)
+        view.present(aboutController, animated: true)
     }
 }

@@ -3,7 +3,7 @@ import Moya
 
 class Factory {
     private let networkManager = NetworkManager(baseUrl: "https://www.googleapis.com/books/v1")
-    private let repo = BookRepo()
+    private let repo = BookDataBase()
     
     func getMainViewController() -> UIViewController {
         let controller = MainViewController(nibName: "MainViewController", bundle: nil)

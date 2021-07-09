@@ -4,7 +4,7 @@ import UIKit
 class CercleProgressBar: UIView {
     var color = UIColor.green
     var progress: CGFloat = 0 {
-        didSet { setNeedsDisplay() }
+        willSet { progressLayer.strokeEnd = newValue }
     }
     var lineWidth: CGFloat = 10
     
@@ -40,6 +40,5 @@ class CercleProgressBar: UIView {
         progressLayer.strokeStart = 0
         progressLayer.strokeEnd = progress
         progressLayer.strokeColor = color.cgColor
-        
     }
 }

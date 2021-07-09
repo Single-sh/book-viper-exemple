@@ -13,14 +13,15 @@ protocol AboutPresenterProtocol: AnyObject {
 }
 
 protocol AboutInteractorProtocol: AnyObject {
-    init(repo: BookRepo)
+    init(repo: AboutDataBaseProtocol)
     func save(book: BookProtocol) -> Bool
+    func remove(id: String) -> Bool
     func isContains(id: String) -> Bool 
 }
 
 enum FavouriteAction: String {
-    case save = "Add to my favourite"
-    case remove = "Remove from my favourite"
+    case save = "Add favourite"
+    case remove = "Remove favourite"
     
     var tintColor: UIColor {
         switch self {
