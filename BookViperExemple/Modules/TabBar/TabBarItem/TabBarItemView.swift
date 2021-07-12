@@ -44,7 +44,7 @@ extension TabBarItemView: TabBarItemViewProtocol {
         self.itemTapped = itemTapped
         labelView.text = ""
         imageView.image = item.icon
-        imageView.tintColor = .white
+        imageView.tintColor = .black
         contentView.backgroundColor = .clear
         contentView.layer.cornerRadius = 25
     }

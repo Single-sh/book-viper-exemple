@@ -32,6 +32,12 @@
 		6FB45A0E2696F82E002799C3 /* AboutPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB45A0D2696F82E002799C3 /* AboutPresenter.swift */; };
 		6FB45A102696F83F002799C3 /* AboutInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB45A0F2696F83F002799C3 /* AboutInteractor.swift */; };
 		6FB45A122696F84C002799C3 /* AboutContractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB45A112696F84C002799C3 /* AboutContractor.swift */; };
+		6FB45A16269893D4002799C3 /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB45A14269893D4002799C3 /* FavouriteViewController.swift */; };
+		6FB45A17269893D4002799C3 /* FavouriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FB45A15269893D4002799C3 /* FavouriteViewController.xib */; };
+		6FB45A19269893EF002799C3 /* FavouritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB45A18269893EF002799C3 /* FavouritePresenter.swift */; };
+		6FB45A1B26989401002799C3 /* FavouriteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB45A1A26989401002799C3 /* FavouriteInteractor.swift */; };
+		6FB45A1D2698940F002799C3 /* FavouriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB45A1C2698940F002799C3 /* FavouriteRouter.swift */; };
+		6FB45A1F26989422002799C3 /* FavouriteContractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB45A1E26989422002799C3 /* FavouriteContractor.swift */; };
 		6FC132EF265FD0E700A19747 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC132EE265FD0E700A19747 /* AppDelegate.swift */; };
 		6FC132F8265FD0E900A19747 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FC132F7265FD0E900A19747 /* Assets.xcassets */; };
 		6FC132FB265FD0E900A19747 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FC132F9265FD0E900A19747 /* LaunchScreen.storyboard */; };
@@ -74,6 +80,12 @@
 		6FB45A0D2696F82E002799C3 /* AboutPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPresenter.swift; sourceTree = "<group>"; };
 		6FB45A0F2696F83F002799C3 /* AboutInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutInteractor.swift; sourceTree = "<group>"; };
 		6FB45A112696F84C002799C3 /* AboutContractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutContractor.swift; sourceTree = "<group>"; };
+		6FB45A14269893D4002799C3 /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		6FB45A15269893D4002799C3 /* FavouriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouriteViewController.xib; sourceTree = "<group>"; };
+		6FB45A18269893EF002799C3 /* FavouritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePresenter.swift; sourceTree = "<group>"; };
+		6FB45A1A26989401002799C3 /* FavouriteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteInteractor.swift; sourceTree = "<group>"; };
+		6FB45A1C2698940F002799C3 /* FavouriteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRouter.swift; sourceTree = "<group>"; };
+		6FB45A1E26989422002799C3 /* FavouriteContractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteContractor.swift; sourceTree = "<group>"; };
 		6FC132EB265FD0E700A19747 /* BookViperExemple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookViperExemple.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FC132EE265FD0E700A19747 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FC132F7265FD0E900A19747 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -190,6 +202,27 @@
 			path = TabBarItem;
 			sourceTree = "<group>";
 		};
+		6FB45A1326989200002799C3 /* Favourite */ = {
+			isa = PBXGroup;
+			children = (
+				6FB45A20269C638C002799C3 /* Cell */,
+				6FB45A14269893D4002799C3 /* FavouriteViewController.swift */,
+				6FB45A15269893D4002799C3 /* FavouriteViewController.xib */,
+				6FB45A18269893EF002799C3 /* FavouritePresenter.swift */,
+				6FB45A1A26989401002799C3 /* FavouriteInteractor.swift */,
+				6FB45A1C2698940F002799C3 /* FavouriteRouter.swift */,
+				6FB45A1E26989422002799C3 /* FavouriteContractor.swift */,
+			);
+			path = Favourite;
+			sourceTree = "<group>";
+		};
+		6FB45A20269C638C002799C3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		6FC132E2265FD0E700A19747 = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +261,7 @@
 		6FC13302265FE1F800A19747 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				6FB45A1326989200002799C3 /* Favourite */,
 				6F0FC37C268F15C1004671DF /* About */,
 				6F67D7AB26678C4800E350D0 /* TabBar */,
 				6FC13303265FE20400A19747 /* Main */,
@@ -330,6 +364,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FB45A17269893D4002799C3 /* FavouriteViewController.xib in Resources */,
 				6F8A3A6F266E688C00EDA7CA /* TabBarItemView.xib in Resources */,
 				6F0FC380268F1616004671DF /* AboutViewController.xib in Resources */,
 				6FC132FB265FD0E900A19747 /* LaunchScreen.storyboard in Resources */,
@@ -376,18 +411,23 @@
 				6FB45A082695C18C002799C3 /* InfoDTO.swift in Sources */,
 				6FC13313265FF45000A19747 /* Book.swift in Sources */,
 				6FB45A102696F83F002799C3 /* AboutInteractor.swift in Sources */,
+				6FB45A1F26989422002799C3 /* FavouriteContractor.swift in Sources */,
 				6F8A3A6D266E687900EDA7CA /* TabBarItemView.swift in Sources */,
 				6FC1330F265FF0C800A19747 /* MainContracts.swift in Sources */,
+				6FB45A1D2698940F002799C3 /* FavouriteRouter.swift in Sources */,
 				6F0FC37B268E0FBB004671DF /* CodableService.swift in Sources */,
 				6FE5C31D2667A85900E4BF30 /* NavigationTabBarController.swift in Sources */,
 				6FC1331726610E0500A19747 /* Factory.swift in Sources */,
 				6F0FC3772689ED8D004671DF /* CercleProgressBar.swift in Sources */,
+				6FB45A1B26989401002799C3 /* FavouriteInteractor.swift in Sources */,
 				6F0FC370267CE55A004671DF /* BooksNavigationBar.swift in Sources */,
 				6FC132EF265FD0E700A19747 /* AppDelegate.swift in Sources */,
 				6FE5C31F2667B09100E4BF30 /* TabNavigationView.swift in Sources */,
 				6FB45A0E2696F82E002799C3 /* AboutPresenter.swift in Sources */,
 				6FB45A122696F84C002799C3 /* AboutContractor.swift in Sources */,
 				6F72BC9D266116B20066BE61 /* MainPresenter.swift in Sources */,
+				6FB45A19269893EF002799C3 /* FavouritePresenter.swift in Sources */,
+				6FB45A16269893D4002799C3 /* FavouriteViewController.swift in Sources */,
 				6F0FC3732680973A004671DF /* NetworkManager.swift in Sources */,
 				6FC13306265FE2DC00A19747 /* MainViewController.swift in Sources */,
 				6F72BC9F266116C90066BE61 /* MainInteractor.swift in Sources */,

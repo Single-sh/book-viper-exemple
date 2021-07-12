@@ -23,4 +23,15 @@ class Factory {
         controller.setPresenter(presenter: presenter)
         return controller
     }
+    
+    func getFavouriteViewController() -> UIViewController {
+        let controller = FavouriteViewController(nibName: "FavouriteViewController", bundle: nil)
+        let interactor = FavouriteInteractor(dataBase: repo)
+        let router = FavouriteRouter(view: controller, factory: self)
+        let presenter = FavouritePresenter(view: controller, interactor: interactor, router: router)
+        controller.setPresenter(presenter: presenter)
+        controller.title = "FAVOURITE"
+        let navigation = BooksNavigationBar(rootViewController: controller)
+        return navigation
+    }
 }
