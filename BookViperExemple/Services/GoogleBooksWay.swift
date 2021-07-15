@@ -1,6 +1,6 @@
 import Foundation
 
-enum GoogleBooksRouter: NetworkRouter {
+enum GoogleBooksWay: NetworkWay {
     case getList(search: String)
     
     var path: String {
