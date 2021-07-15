@@ -1,12 +1,17 @@
 import Foundation
 import UIKit
 
-final class NavigationtabBarController: UITabBarController {
+final class NavigationTabBarController: UITabBarController {
     private let tabBarHeight: CGFloat = 100
-    private let factory = Factory()
+    private var factory: TabBarFactory = Factory()
+    
     override func viewDidLoad() {
         setupTabBar()
     }
+    
+//    func setFactory(factory: TabBarFactory) {
+//        self.factory = factory
+//    }
     
     private func setupTabBar() {
         let tabItems: [TabItem] = [.explore, .favourite, .menu]

@@ -5,7 +5,7 @@ enum TabItem: String, CaseIterable {
     case explore
     case favourite
     case menu
-    func getViewController(factory: Factory) -> UIViewController {
+    func getViewController(factory: TabBarFactory) -> UIViewController {
         switch self {
         case .explore:
             let controller = factory.getMainViewController()

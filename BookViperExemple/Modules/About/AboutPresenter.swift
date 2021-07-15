@@ -1,6 +1,6 @@
 import Foundation
 
-class AboutPresenter: AboutPresenterProtocol {
+final class AboutPresenter: AboutPresenterProtocol {
     private unowned let view: AboutViewProtocol
     private let interactor: AboutInteractorProtocol
     private let book: BookProtocol

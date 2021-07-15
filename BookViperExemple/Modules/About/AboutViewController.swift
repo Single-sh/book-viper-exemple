@@ -1,7 +1,7 @@
 import UIKit
 import Nuke
 
-class AboutViewController: UIViewController {
+final class AboutViewController: UIViewController {
     
     private var presenter: AboutPresenterProtocol!
     @IBOutlet private var imageView: UIImageView!

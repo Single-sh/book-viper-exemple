@@ -1,10 +1,10 @@
 import Foundation
 
-class FavouriteRouter: FavouriteRouterProtocol {
+final class FavouriteRouter: FavouriteRouterProtocol {
     private unowned var view: FavouriteViewController
-    private let factory: Factory
+    private let factory: FavouriteFactory
     
-    required init(view: FavouriteViewController, factory: Factory) {
+    required init(view: FavouriteViewController, factory: FavouriteFactory) {
         self.view = view
         self.factory = factory
     }

@@ -1,6 +1,6 @@
 import Foundation
 
-class AboutInteractor: AboutInteractorProtocol {
+final class AboutInteractor: AboutInteractorProtocol {
     let repo: AboutDataBaseProtocol
     
     required init(repo: AboutDataBaseProtocol) {

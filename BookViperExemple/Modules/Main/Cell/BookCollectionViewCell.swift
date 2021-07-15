@@ -1,7 +1,8 @@
 import UIKit
+import Nuke
 
-class BookCollectionViewCell: UICollectionViewCell {
-    let imageView = UIImageView()
+final class BookCollectionViewCell: UICollectionViewCell {
+    private let imageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,6 +29,16 @@ class BookCollectionViewCell: UICollectionViewCell {
         layer.shadowRadius = 2
         layer.cornerRadius = 10
         backgroundColor = .white
+    }
+    
+    func setInfo(book: BookProtocol) {
+        let emptyImage = UIImage(named: "emptyImage")
+        if let urlString = book.thumbnail, let url = URL(string: urlString) {
+            let options = ImageLoadingOptions(placeholder: emptyImage, failureImage: emptyImage)
+            Nuke.loadImage(with: url, options: options, into: imageView)
+        } else {
+            imageView.image = emptyImage
+        }
     }
     
 }

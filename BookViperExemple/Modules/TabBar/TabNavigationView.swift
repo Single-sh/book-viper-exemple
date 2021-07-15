@@ -1,6 +1,6 @@
 import UIKit
 
-class TabNavigationView: UIView {
+final class TabNavigationView: UIView {
     var itemTapped: ((_ tab: Int) -> Void)?
     var activeItem: Int = 0
     private let horizontalSpaceing: CGFloat = 30

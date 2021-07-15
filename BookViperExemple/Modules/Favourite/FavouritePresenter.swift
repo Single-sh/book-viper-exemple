@@ -1,6 +1,6 @@
 import Foundation
 
-class FavouritePresenter: FavouritePresenterProtocol {
+final class FavouritePresenter: FavouritePresenterProtocol {
     private unowned let view: FavouriteViewProtocol
     private let interactor: FavouriteInteractorProtocol
     private let router: FavouriteRouterProtocol
@@ -24,7 +24,7 @@ class FavouritePresenter: FavouritePresenterProtocol {
         router.showAboutView(book: book)
     }
     
-    func getCountRow() -> Int {
+    func getCellCount() -> Int {
         books.count
     }
     

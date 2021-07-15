@@ -1,13 +1,6 @@
-//
-//  HeaderCollectionReusableView.swift
-//  BookViperExemple
-//
-//  Created by Aleksandr Shevchenko on 16.06.2021.
-//
-
 import UIKit
 
-class HeaderCollectionReusableView: UICollectionReusableView {
+final class HeaderCollectionReusableView: UICollectionReusableView {
     private let title = UILabel()
     private let lineView = UIView()
     

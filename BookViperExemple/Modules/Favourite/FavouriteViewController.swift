@@ -1,7 +1,6 @@
 import UIKit
-import Nuke
 
-class FavouriteViewController: UIViewController {
+final class FavouriteViewController: UIViewController {
     private var presenter: FavouritePresenterProtocol!
     private let cellSpace: CGFloat = 20
     private var collection = UICollectionView(
@@ -62,7 +61,7 @@ extension FavouriteViewController: FavouriteViewProtocol {
 extension FavouriteViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter.getCountRow()
+        presenter.getCellCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -70,14 +69,8 @@ extension FavouriteViewController: UICollectionViewDataSource {
             withReuseIdentifier: String(describing: BookCollectionViewCell.self),
             for: indexPath
         ) as! BookCollectionViewCell
-        let data = presenter.getBook(indexPath: indexPath)
-        let emptyImage = UIImage(named: "emptyImage")
-        if let urlString = data.thumbnail, let url = URL(string: urlString) {
-            let options = ImageLoadingOptions(placeholder: emptyImage, failureImage: emptyImage)
-            Nuke.loadImage(with: url, options: options, into: cell.imageView)
-        } else {
-            cell.imageView.image = emptyImage
-        }
+        let book = presenter.getBook(indexPath: indexPath)
+        cell.setInfo(book: book)
         return cell
     }
     

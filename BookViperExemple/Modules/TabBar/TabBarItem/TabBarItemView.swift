@@ -4,7 +4,7 @@ protocol TabBarItemViewProtocol: UIView {
     func updateTabUI(isSelected: Bool)
 }
 
-class TabBarItemView: UIView {
+final class TabBarItemView: UIView {
     var item: TabItem!
     @IBOutlet private var contentView: UIView!
     @IBOutlet private var imageView: UIImageView!

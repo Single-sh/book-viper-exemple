@@ -1,6 +1,6 @@
 import Foundation
 
-class FavouriteInteractor: FavouriteInteractorProtocol {
+final class FavouriteInteractor: FavouriteInteractorProtocol {
     private let dataBase: FavouriteDataBaseProtocol
     required init(dataBase: FavouriteDataBaseProtocol) {
         self.dataBase = dataBase

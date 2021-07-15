@@ -1,5 +1,4 @@
 import UIKit
-import Nuke
 
 final class MainViewController: UIViewController {
     
@@ -92,7 +91,7 @@ extension MainViewController: MainViewProtocol {
         progresBar.progress = CGFloat(progress / 100)
     }
     
-    func showBooks() {
+    func updateData() {
         progresBar.isHidden = true
         collection.reloadData()
     }
@@ -123,14 +122,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             withReuseIdentifier: String(describing: BookCollectionViewCell.self),
             for: indexPath
         ) as! BookCollectionViewCell
-        let data = presenter.getCellData(indexPath: indexPath)
-        let emptyImage = UIImage(named: "emptyImage")
-        if let urlString = data.thumbnail, let url = URL(string: urlString) {
-            let options = ImageLoadingOptions(placeholder: emptyImage, failureImage: emptyImage)
-            Nuke.loadImage(with: url, options: options, into: cell.imageView)
-        } else {
-            cell.imageView.image = emptyImage
-        }
+        let book = presenter.getBook(indexPath: indexPath)
+        cell.setInfo(book: book)
         return cell
     }
     

@@ -1,10 +1,10 @@
 import Foundation
 
-class MainRouter: MainRouterProtocol {
+final class MainRouter: MainRouterProtocol {
     private unowned var view: MainViewController
-    private let factory: Factory
+    private let factory: MainFactory
     
-    required init(view: MainViewController, factory: Factory) {
+    required init(view: MainViewController, factory: MainFactory) {
         self.view = view
         self.factory = factory
     }

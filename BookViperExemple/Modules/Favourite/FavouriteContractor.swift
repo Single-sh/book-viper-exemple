@@ -8,7 +8,7 @@ protocol FavouritePresenterProtocol: AnyObject {
     init(view: FavouriteViewProtocol, interactor: FavouriteInteractorProtocol, router: FavouriteRouterProtocol)
     func viewDidLoad()
     func didSelectCell(indexPath: IndexPath)
-    func getCountRow() -> Int
+    func getCellCount() -> Int
     func getBook(indexPath: IndexPath) -> BookProtocol
 }
 
@@ -18,6 +18,6 @@ protocol FavouriteInteractorProtocol: AnyObject {
 }
 
 protocol FavouriteRouterProtocol: AnyObject {
-    init(view: FavouriteViewController, factory: Factory)
+    init(view: FavouriteViewController, factory: FavouriteFactory)
     func showAboutView(book: BookProtocol)
 }

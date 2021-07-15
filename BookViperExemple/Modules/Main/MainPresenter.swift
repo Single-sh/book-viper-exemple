@@ -35,7 +35,7 @@ final class MainPresenter: MainPresenterProtocol {
     
     private func updateProgress(current: Int, max: Int) {
         if current == max {
-            view.showBooks()
+            view.updateData()
             return
         }
         let cur = current + 1
@@ -50,7 +50,7 @@ final class MainPresenter: MainPresenterProtocol {
         data[section].books.count
     }
     
-    func getCellData(indexPath: IndexPath) -> BookProtocol {
+    func getBook(indexPath: IndexPath) -> BookProtocol {
         data[indexPath.section].books[indexPath.row]
     }
     
