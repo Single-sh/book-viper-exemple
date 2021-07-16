@@ -8,20 +8,16 @@ final class FavouriteViewController: UIViewController {
         collectionViewLayout: UICollectionViewFlowLayout()
     )
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         
     }
     
-    
     func setPresenter(presenter: FavouritePresenterProtocol) {
         self.presenter = presenter
     }
     
-    
-
     private func setupUI() {
         collection.backgroundColor = .clear
         view.addSubview(collection)

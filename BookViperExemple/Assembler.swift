@@ -30,6 +30,14 @@ class Assembler: MainAssembler, FavouriteAssembler {
         return controller
     }
     
+    private func getAnimationTestViewController() -> UIViewController {
+        let controller = AnimationTestViewController(
+            nibName: "AnimationTestViewController",
+            bundle: nil
+        )
+        return controller
+    }
+    
     func getTabItemController(tabItem: TabItem) -> UIViewController {
         var controller: UIViewController!
         switch tabItem {
@@ -38,7 +46,7 @@ class Assembler: MainAssembler, FavouriteAssembler {
         case .favourite:
             controller = getFavouriteViewController()
         case .menu:
-            controller = UIViewController()
+            controller = getAnimationTestViewController()
         }
         controller.title = tabItem.rawValue.uppercased()
         controller.tabBarItem.title = tabItem.rawValue.uppercased()
