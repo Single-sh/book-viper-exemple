@@ -22,7 +22,7 @@ protocol MainInteractorProtocol: AnyObject {
 }
 
 protocol MainRouterProtocol: AnyObject {
-    init(view: MainViewController, factory: MainFactory)
+    init(view: MainViewController, factory: MainAssembler)
     func openAboutBook(book: BookProtocol)
 }
 

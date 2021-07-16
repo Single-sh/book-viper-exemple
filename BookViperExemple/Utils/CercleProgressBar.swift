@@ -4,7 +4,7 @@ import UIKit
 class CercleProgressBar: UIView {
     var color = UIColor.green
     var progress: CGFloat = 0 {
-        willSet { showProgressAnimation(newValue: newValue) }
+        willSet { progressLayer.strokeEnd = newValue }
     }
     var lineWidth: CGFloat = 10
     
@@ -50,7 +50,7 @@ class CercleProgressBar: UIView {
         }
         endAnimation.toValue = newValue
         endAnimation.fromValue = progress
-        endAnimation.duration = 1
+        endAnimation.duration = 2
         endAnimation.fillMode = .forwards
         endAnimation.isRemovedOnCompletion = false
         progressLayer.add(endAnimation, forKey: "progress")

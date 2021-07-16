@@ -3,21 +3,13 @@ import UIKit
 
 final class NavigationTabBarController: UITabBarController {
     private let tabBarHeight: CGFloat = 100
-    private var factory: TabBarFactory = Factory()
     
     override func viewDidLoad() {
-        setupTabBar()
+        tabBar.isHidden = true
     }
     
-//    func setFactory(factory: TabBarFactory) {
-//        self.factory = factory
-//    }
-    
-    private func setupTabBar() {
-        let tabItems: [TabItem] = [.explore, .favourite, .menu]
+    func setTabItems(tabItems: [TabItem]) {
         setupView(items: tabItems)
-        viewControllers = tabItems.map{ $0.getViewController(factory: factory)}
-        tabBar.isHidden = true
     }
     
     private func setupView(items: [TabItem]) {

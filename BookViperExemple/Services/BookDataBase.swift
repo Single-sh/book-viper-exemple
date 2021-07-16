@@ -26,11 +26,10 @@ class BookDataBase: AboutDataBaseProtocol, FavouriteDataBaseProtocol {
     func getFavourite(completion: (([BookProtocol]) -> ())) {
         let fetch: NSFetchRequest<BookDTO> = BookDTO.fetchRequest()
         do {
-            let books = try? context.fetch(fetch)
-            let compactsBooks = books?.compactMap({$0}) ?? []
+            let books = try context.fetch(fetch)
+            let compactsBooks = books.compactMap({$0})
             completion(compactsBooks)
-        }
-        catch {
+        } catch {
             print(error.localizedDescription)
             completion([])
         }
@@ -58,10 +57,9 @@ class BookDataBase: AboutDataBaseProtocol, FavouriteDataBaseProtocol {
         let fetch: NSFetchRequest<BookDTO> = BookDTO.fetchRequest()
         fetch.predicate = NSPredicate(format: "id = %@", id)
         do {
-            let books = try? context.fetch(fetch)
-            return books?.first
-        }
-        catch {
+            let books = try context.fetch(fetch)
+            return books.first
+        } catch {
             print(error.localizedDescription)
             return nil
         }

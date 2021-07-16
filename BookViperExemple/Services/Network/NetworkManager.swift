@@ -1,13 +1,13 @@
 import Foundation
 
 protocol NetworkRequest {
-    func request<T: Codable>(way: NetworkWay, keyTask: String, completion: @escaping (Result<T, DescriptionError>) -> ())
+    func request<T: Codable>(api: NetworkAPI, keyTask: String, completion: @escaping (Result<T, DescriptionError>) -> ())
     func cancelTask(keyTask: String)
 }
 
 extension NetworkRequest {
-    func request<T: Codable>(way: NetworkWay, keyTask: String = "", completion: @escaping (Result<T, DescriptionError>) -> ()) {
-        request(way: way, keyTask: keyTask, completion: completion)
+    func request<T: Codable>(api: NetworkAPI, keyTask: String = "", completion: @escaping (Result<T, DescriptionError>) -> ()) {
+        request(api: api, keyTask: keyTask, completion: completion)
     }
 }
 
@@ -18,18 +18,18 @@ class NetworkManager: NetworkRequest {
         self.baseUrl = baseUrl
     }
     
-    func request<T: Codable>(way: NetworkWay, keyTask: String, completion: @escaping (Result<T, DescriptionError>) -> ()) {
-        var components = URLComponents(string: baseUrl + way.path)
-        components?.queryItems = way.query
+    func request<T: Codable>(api: NetworkAPI, keyTask: String, completion: @escaping (Result<T, DescriptionError>) -> ()) {
+        var components = URLComponents(string: baseUrl + api.path)
+        components?.queryItems = api.query
         guard let url = components?.url else {
             completion(.failure(.init(description: "Url error")))
             return
         }
         var request = URLRequest(url: url)
-        request.httpMethod = way.method
-        request.httpBody = way.body
+        request.httpMethod = api.method
+        request.httpBody = api.body
         
-        request.allHTTPHeaderFields = way.headers.compactMapValues{$0 as? String}
+        request.allHTTPHeaderFields = api.headers.compactMapValues{$0 as? String}
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
                 DispatchQueue.main.async {
@@ -94,7 +94,7 @@ enum NetworkResponse: String {
     case disconect = "Plase check your network connection"
 }
 
-protocol NetworkWay {
+protocol NetworkAPI {
     var path: String {get}
     var headers: [String: Any] {get}
     var method: String {get}

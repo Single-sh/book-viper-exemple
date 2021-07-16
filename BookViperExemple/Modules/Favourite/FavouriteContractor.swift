@@ -18,6 +18,6 @@ protocol FavouriteInteractorProtocol: AnyObject {
 }
 
 protocol FavouriteRouterProtocol: AnyObject {
-    init(view: FavouriteViewController, factory: FavouriteFactory)
+    init(view: FavouriteViewController, factory: FavouriteAssembler)
     func showAboutView(book: BookProtocol)
 }

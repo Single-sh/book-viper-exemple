@@ -1,47 +1,53 @@
 import Foundation
 import Moya
 
-protocol TabBarFactory {
-    func getMainViewController() -> UIViewController
-    func getFavouriteViewController() -> UIViewController
-}
-
-protocol GeneralFactory {
+protocol AboutAssembler {
     func getAboutViewController(book: BookProtocol) -> UIViewController
 }
 
-protocol MainFactory: GeneralFactory {}
-protocol FavouriteFactory: GeneralFactory {}
+protocol MainAssembler: AboutAssembler {}
+protocol FavouriteAssembler: AboutAssembler {}
 
-class Factory: MainFactory, FavouriteFactory {
+class Assembler: MainAssembler, FavouriteAssembler {
     private let networkManager = NetworkManager(baseUrl: "https://www.googleapis.com/books/v1")
     private let repo = BookDataBase()
-}
 
-extension Factory: TabBarFactory {
-    func getMainViewController() -> UIViewController {
+    private func getMainViewController() -> UIViewController {
         let controller = MainViewController(nibName: "MainViewController", bundle: nil)
         let interactor = MainInteractor(remoute: networkManager)
         let router = MainRouter(view: controller, factory: self)
         let presenter = MainPresenter(view: controller, interactor: interactor, router: router)
         controller.setPresenter(presenter: presenter)
-        controller.title = "EXPLORE"
-        let navigation = BooksNavigationBar(rootViewController: controller)
-        return navigation
+        return controller
     }
-    func getFavouriteViewController() -> UIViewController {
+    
+    private func getFavouriteViewController() -> UIViewController {
         let controller = FavouriteViewController(nibName: "FavouriteViewController", bundle: nil)
         let interactor = FavouriteInteractor(dataBase: repo)
         let router = FavouriteRouter(view: controller, factory: self)
         let presenter = FavouritePresenter(view: controller, interactor: interactor, router: router)
         controller.setPresenter(presenter: presenter)
-        controller.title = "FAVOURITE"
+        return controller
+    }
+    
+    func getTabItemController(tabItem: TabItem) -> UIViewController {
+        var controller: UIViewController!
+        switch tabItem {
+        case .explore:
+            controller = getMainViewController()
+        case .favourite:
+            controller = getFavouriteViewController()
+        case .menu:
+            controller = UIViewController()
+        }
+        controller.title = tabItem.rawValue.uppercased()
+        controller.tabBarItem.title = tabItem.rawValue.uppercased()
         let navigation = BooksNavigationBar(rootViewController: controller)
         return navigation
     }
 }
 
-extension Factory: GeneralFactory {
+extension Assembler: AboutAssembler {
     func getAboutViewController(book: BookProtocol) -> UIViewController {
         let controller = AboutViewController(nibName: "AboutViewController", bundle: nil)
         let interactor = AboutInteractor(repo: repo)

@@ -10,7 +10,7 @@
 		6F0FC370267CE55A004671DF /* BooksNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0FC36F267CE55A004671DF /* BooksNavigationBar.swift */; };
 		6F0FC3732680973A004671DF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0FC3722680973A004671DF /* NetworkManager.swift */; };
 		6F0FC3772689ED8D004671DF /* CercleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0FC3762689ED8D004671DF /* CercleProgressBar.swift */; };
-		6F0FC379268E0CAD004671DF /* GoogleBooksWay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0FC378268E0CAD004671DF /* GoogleBooksWay.swift */; };
+		6F0FC379268E0CAD004671DF /* GoogleBooksAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0FC378268E0CAD004671DF /* GoogleBooksAPI.swift */; };
 		6F0FC37B268E0FBB004671DF /* CodableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0FC37A268E0FBB004671DF /* CodableService.swift */; };
 		6F0FC37F268F1616004671DF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0FC37D268F1616004671DF /* AboutViewController.swift */; };
 		6F0FC380268F1616004671DF /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F0FC37E268F1616004671DF /* AboutViewController.xib */; };
@@ -45,7 +45,7 @@
 		6FC13307265FE2DC00A19747 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FC13305265FE2DC00A19747 /* MainViewController.xib */; };
 		6FC1330F265FF0C800A19747 /* MainContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC1330E265FF0C800A19747 /* MainContracts.swift */; };
 		6FC13313265FF45000A19747 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC13312265FF45000A19747 /* Book.swift */; };
-		6FC1331726610E0500A19747 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC1331626610E0500A19747 /* Factory.swift */; };
+		6FC1331726610E0500A19747 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC1331626610E0500A19747 /* Assembler.swift */; };
 		6FE5C31D2667A85900E4BF30 /* NavigationTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE5C31C2667A85900E4BF30 /* NavigationTabBarController.swift */; };
 		6FE5C31F2667B09100E4BF30 /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE5C31E2667B09100E4BF30 /* TabNavigationView.swift */; };
 		F18E2CAE14D2A996D2C1F869 /* libPods-BookViperExemple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD2EE8225219BF2E76D208D /* libPods-BookViperExemple.a */; };
@@ -58,7 +58,7 @@
 		6F0FC36F267CE55A004671DF /* BooksNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksNavigationBar.swift; sourceTree = "<group>"; };
 		6F0FC3722680973A004671DF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		6F0FC3762689ED8D004671DF /* CercleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CercleProgressBar.swift; sourceTree = "<group>"; };
-		6F0FC378268E0CAD004671DF /* GoogleBooksWay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBooksWay.swift; sourceTree = "<group>"; };
+		6F0FC378268E0CAD004671DF /* GoogleBooksAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBooksAPI.swift; sourceTree = "<group>"; };
 		6F0FC37A268E0FBB004671DF /* CodableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableService.swift; sourceTree = "<group>"; };
 		6F0FC37D268F1616004671DF /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		6F0FC37E268F1616004671DF /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 		6FC13305265FE2DC00A19747 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		6FC1330E265FF0C800A19747 /* MainContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContracts.swift; sourceTree = "<group>"; };
 		6FC13312265FF45000A19747 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
-		6FC1331626610E0500A19747 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
+		6FC1331626610E0500A19747 /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		6FE5C31C2667A85900E4BF30 /* NavigationTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTabBarController.swift; sourceTree = "<group>"; };
 		6FE5C31E2667B09100E4BF30 /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
 		A3383370FB27ED709A58E99A /* Pods-BookViperExemple.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookViperExemple.debug.xcconfig"; path = "Target Support Files/Pods-BookViperExemple/Pods-BookViperExemple.debug.xcconfig"; sourceTree = "<group>"; };
@@ -252,7 +252,7 @@
 				6FC132F7265FD0E900A19747 /* Assets.xcassets */,
 				6FC132F9265FD0E900A19747 /* LaunchScreen.storyboard */,
 				6FC132FC265FD0E900A19747 /* Info.plist */,
-				6FC1331626610E0500A19747 /* Factory.swift */,
+				6FC1331626610E0500A19747 /* Assembler.swift */,
 				6F878ABB2695A1D00040F11D /* Model.xcdatamodeld */,
 			);
 			path = BookViperExemple;
@@ -287,7 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				6F0FC3712680971C004671DF /* Network */,
-				6F0FC378268E0CAD004671DF /* GoogleBooksWay.swift */,
+				6F0FC378268E0CAD004671DF /* GoogleBooksAPI.swift */,
 				6FB45A0B2696E3B1002799C3 /* BookDataBase.swift */,
 			);
 			path = Services;
@@ -417,7 +417,7 @@
 				6FB45A1D2698940F002799C3 /* FavouriteRouter.swift in Sources */,
 				6F0FC37B268E0FBB004671DF /* CodableService.swift in Sources */,
 				6FE5C31D2667A85900E4BF30 /* NavigationTabBarController.swift in Sources */,
-				6FC1331726610E0500A19747 /* Factory.swift in Sources */,
+				6FC1331726610E0500A19747 /* Assembler.swift in Sources */,
 				6F0FC3772689ED8D004671DF /* CercleProgressBar.swift in Sources */,
 				6FB45A1B26989401002799C3 /* FavouriteInteractor.swift in Sources */,
 				6F0FC370267CE55A004671DF /* BooksNavigationBar.swift in Sources */,
@@ -437,7 +437,7 @@
 				6F36E233267A5B3A00BF9F8A /* HeaderCollectionReusableView.swift in Sources */,
 				6FB45A0C2696E3B1002799C3 /* BookDataBase.swift in Sources */,
 				6F878ABD2695A1D00040F11D /* Model.xcdatamodeld in Sources */,
-				6F0FC379268E0CAD004671DF /* GoogleBooksWay.swift in Sources */,
+				6F0FC379268E0CAD004671DF /* GoogleBooksAPI.swift in Sources */,
 				6F0FC37F268F1616004671DF /* AboutViewController.swift in Sources */,
 				6F67D7AD26678C6600E350D0 /* TabItem.swift in Sources */,
 			);

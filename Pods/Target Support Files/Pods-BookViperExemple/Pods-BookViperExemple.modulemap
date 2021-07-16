@@ -1,0 +1,6 @@
+module Pods_BookViperExemple {
+  umbrella header "Pods-BookViperExemple-umbrella.h"
+
+  export *
+  module * { export * }
+}

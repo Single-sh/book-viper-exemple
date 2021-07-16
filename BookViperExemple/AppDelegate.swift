@@ -4,19 +4,26 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    let assembler = Assembler()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow()
-        let controller = NavigationTabBarController()
-//        let factory = Factory()
-//        controller.setFactory(factory: factory)
-        window?.rootViewController = controller
-        window?.makeKeyAndVisible()
-        
+        setTabBar()
         BooksNavigationBar.setupAppearance()
         return true
     }
 
+    
+    private func setTabBar() {
+        window = UIWindow()
+        let tabItems: [TabItem] = [.explore, .favourite, .menu]
+        let controller = NavigationTabBarController()
+        controller.setTabItems(tabItems: tabItems)
+        controller.viewControllers = tabItems.map({
+            assembler.getTabItemController(tabItem: $0)
+        })
+        window?.rootViewController = controller
+        window?.makeKeyAndVisible()
+    }
 
 }
 
