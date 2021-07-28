@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnimationTestViewController" customModule="BookViperExemple" customModuleProvider="target">
             <connections>
-                <outlet property="cubeView" destination="NER-Ut-M4c" id="0cu-19-Q7Q"/>
+                <outlet property="tableView" destination="Msh-i2-8h6" id="SNV-fU-Ufv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,28 +19,18 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NER-Ut-M4c">
-                    <rect key="frame" x="107" y="353" width="200" height="200"/>
-                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="200" id="C0y-Wv-Jyt"/>
-                        <constraint firstAttribute="height" constant="200" id="afd-VB-Zse"/>
-                    </constraints>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Стой на месте гребаный текст !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waP-mu-shM">
-                    <rect key="frame" x="81" y="282" width="252.5" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Msh-i2-8h6">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="NER-Ut-M4c" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="14t-C3-drY"/>
-                <constraint firstItem="waP-mu-shM" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Dvf-lc-3gX"/>
-                <constraint firstItem="NER-Ut-M4c" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="Lnj-ad-fnn"/>
-                <constraint firstItem="NER-Ut-M4c" firstAttribute="top" secondItem="waP-mu-shM" secondAttribute="bottom" constant="50" id="XAB-f5-tnk"/>
+                <constraint firstItem="Msh-i2-8h6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="1lP-FX-NCj"/>
+                <constraint firstItem="Msh-i2-8h6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="S4O-8w-NQY"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Msh-i2-8h6" secondAttribute="trailing" id="VwL-Q0-0zM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Msh-i2-8h6" secondAttribute="bottom" id="WVk-Mt-C4r"/>
             </constraints>
             <point key="canvasLocation" x="29" y="90"/>
         </view>
@@ -48,9 +38,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

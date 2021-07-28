@@ -1,81 +1,58 @@
 import UIKit
+import CoreData
 
-class AnimationTestViewController: UIViewController {
-    @IBOutlet private var cubeView: UIView!
+class AnimationTestViewController: UIViewController, NSFetchedResultsControllerDelegate {
+    @IBOutlet weak var tableView: UITableView!
+    private var fetchController: NSFetchedResultsController<BookDTO>!
+    
+    private lazy var context: NSManagedObjectContext = {
+        let container = NSPersistentContainer(name: "Model")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container.viewContext
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        animation(cut: .leftBottom)
+        tableView.register(UINib(nibName: "BookCell", bundle: nil), forCellReuseIdentifier: "cell")
+        loadSavedData()
     }
     
-    private func animation(cut: Cut) {
-        UIView.animate(withDuration: 1, delay: 1, options: .curveLinear) {
-            self.cubeView.transform = .init(translationX: cut.x, y: cut.y)
-                .scaledBy(x: cut.scale, y: cut.scale)
-                .rotated(by: cut.rotate * -1)
-        } completion: { result in
-            self.animation(cut: cut.next)
+    private func loadSavedData() {
+        if fetchController == nil {
+            let request: NSFetchRequest<BookDTO> = BookDTO.fetchRequest()
+            let sort = NSSortDescriptor(key: "id", ascending: false)
+            request.sortDescriptors = [sort]
+            fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            fetchController.delegate = self
+        }
+        
+        do {
+            try fetchController.performFetch()
+            tableView.reloadData()
+        } catch {
+            print("Fetch failed")
         }
     }
-
 }
 
-enum Cut {
-    case leftTop
-    case rightTop
-    case leftBottom
-    case rightBottom
-    
-    var x: CGFloat {
-        switch self {
-        case .leftBottom, .leftTop:
-            return -50
-        default:
-            return 50
-        }
+extension AnimationTestViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        fetchController.sections?[section].numberOfObjects ?? 0
     }
     
-    var y: CGFloat {
-        switch self {
-        case .leftTop, .rightTop:
-            return -50
-        default:
-            return 50
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let book = fetchController?.object(at: indexPath) else {
+            fatalError("Attempt to configure cell without a managed object")
         }
+        cell.textLabel?.text = book.info?.title
+        return cell
     }
     
-    var scale: CGFloat {
-        switch self {
-        case .leftTop, .rightBottom:
-            return 1
-        default:
-            return 0.5
-        }
-    }
     
-    var rotate: CGFloat {
-        switch self {
-        case .leftBottom:
-            return  (.pi / 2)
-        case .leftTop:
-            return .pi
-        case .rightTop:
-            return (.pi / 2 + .pi)
-        case .rightBottom:
-            return (.pi * 2)
-        }
-    }
     
-    var next: Cut {
-        switch self {
-        case .leftBottom:
-            return .leftTop
-        case .leftTop:
-            return .rightTop
-        case .rightTop:
-            return .rightBottom
-        case .rightBottom:
-            return .leftBottom
-        }
-    }
 }
